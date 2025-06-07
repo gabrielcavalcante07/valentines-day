@@ -1,5 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Estonia&family=Fleur+De+Leah&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -19,8 +21,10 @@ body{
 }
 
 h1{
-    /* font-family: "Beau Rivage", cursive; */
+    font-family: 'Great Vibes', cursive;
     font-size: 40px;
+    letter-spacing: 3px;
+    font-weight: 600;
 }
 
 .carousel{
@@ -36,14 +40,15 @@ h1{
     object-fit: cover; 
     height: 60vh;
     width: 100%;
+    border-radius: 20px;
 }
 
 .carousel-indicators [data-bs-target] {
-  background-color: #ff9999; /* vermelho claro para inativos */
+  background-color: #ff9999;
 } 
 
 .carousel-indicators .active {
-  background-color: red; /* vermelho forte para o ativo */
+  background-color: red;
 }
 
 .content{
@@ -56,21 +61,6 @@ h1{
     font-size: 15px;
 }
 
-.row1{
-    display: flex;
-    gap: 5px;
-    width: 100%;
-    justify-content: space-between;
-    margin-bottom: 5px;
-}
-
-.row2{
-    display: flex;
-    gap: 5px;
-    width: 100%;
-    justify-content: space-between;
-}
-
 .date{
     display: flex;
     flex-direction: column;
@@ -78,12 +68,27 @@ h1{
     height: auto;
 }
 
+.date h5{
+    font-size: 40px;
+    font-family: 'Great Vibes', cursive;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
 .date h3{
     display: flex;
     font-size: 17px;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin: 0;    
+}
+
+.row1, .row2, .row3{
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 5px;
 }
 
 .date p{
@@ -103,43 +108,6 @@ h1{
     gap: 5px;
 }
 
-footer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 5vh;
-    background-color: #1a1a1a;
-    margin-top: 5rem;
-}
-
-
-footer p{
-    display: flex;
-    font-size: 10px;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-}
-
-.ficons{
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-}
-
-.ficons a{
-    text-decoration: none;
-    opacity: 0.7;
-}
-
-.ficons a:hover{
-    opacity: 1;
-}
-
-#fgithub, #flinkedin{
-    color: white;
-    font-size: 13px;
+#yearCard{
+    display: none;
 }
