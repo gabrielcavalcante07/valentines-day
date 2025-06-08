@@ -2,29 +2,43 @@ window.onload = function () {
   // Data inicial do relacionamento: 17 de novembro de 2024
   const startDate = new Date(2024, 10, 17, 0, 0, 0);
 
-  function pluralize(value, singular, plural){
+  // Pluralizar as palavras
+  function pluralize(value, singular, plural) {
     return `${value} ${value === 1 ? singular : plural}`;
   }
 
+  // Se aparecer 0 e trocar por 1
+  function forceNonZero(value) {
+    return value === 0 ? 1 : value;
+  }
+
+  // Atualiza o tempo
   function updateTime() {
     const now = new Date();
     const diff = now - startDate;
 
     const totalSeconds = Math.floor(diff / 1000);
     const rawSeconds = totalSeconds % 60;
-    const seconds = rawSeconds === 0 ? 1 : rawSeconds;
+    const seconds = forceNonZero(rawSeconds);
 
     const totalMinutes = Math.floor(totalSeconds / 60);
-    const minutes = totalMinutes % 60;
+    const rawMinutes = totalMinutes % 60;
+    const minutes = forceNonZero(rawMinutes);
 
     const totalHours = Math.floor(totalMinutes / 60);
-    const hours = totalHours % 24;
+    const rawHours = totalHours % 24;
+    const hours = forceNonZero(rawHours);
 
     const totalDays = Math.floor(totalHours / 24);
-    const years = Math.floor(totalDays / 365);
-    const months = Math.floor((totalDays % 365) / 30);
-    const days = (totalDays % 365) % 30;
+    const rawYears = Math.floor(totalDays / 365);
 
+    const rawMonths = Math.floor((totalDays % 365) / 30);
+    const months = forceNonZero(rawMonths);
+
+    const rawDays = (totalDays % 365) % 30;
+    const days = forceNonZero(rawDays);
+
+    // Atualiza o texto dos cards (todos são sempre visíveis)
     document.getElementById("month").textContent = pluralize(months, "Mês", "Meses");
     document.getElementById("day").textContent = pluralize(days, "Dia", "Dias");
     document.getElementById("hour").textContent = pluralize(hours, "Hora", "Horas");
@@ -32,19 +46,16 @@ window.onload = function () {
     document.getElementById("second").textContent = pluralize(seconds, "Segundo", "Segundos");
 
     const yearCard = document.getElementById("yearCard");
-    const yearText = document.getElementById("yearText");
+    const yearText = document.getElementById("year");
 
-    if (years >= 1) {
+    if (rawYears >= 1) {
       yearCard.style.display = "flex";
-      yearText.textContent = years;
-      yearText.textContent = pluralize(years, "Ano", "Anos")
+      yearText.textContent = pluralize(rawYears, "Ano", "Anos");
     } else {
       yearCard.style.display = "none";
     }
 
-    document.getElementById(
-      "start-date"
-    ).textContent = `${startDate.toLocaleDateString("pt-BR", {
+    document.getElementById("start-date").textContent = `${startDate.toLocaleDateString("pt-BR", {
       day: "2-digit",
       month: "long",
       year: "numeric",
